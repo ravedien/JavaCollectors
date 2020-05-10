@@ -28,6 +28,7 @@ public class CollectorTest {
 	private static void groupingBy(List<Person> persons) {
 		Map<String, List<Person>> result = persons.stream()
 			.collect(Collectors.groupingBy(Person::getName));
+		
 		System.out.println(new Object(){}.getClass().getEnclosingMethod().getName() +" " + result);
 	}
 
@@ -37,6 +38,7 @@ public class CollectorTest {
 	private static void partitioningBy(List<Person> persons) {
 		Map<Boolean, List<Person>> result = persons.stream()
 			.collect(Collectors.partitioningBy(person -> person.getAge() % 2 == 0));
+		
 		System.out.println(new Object(){}.getClass().getEnclosingMethod().getName() +" " + result);
 	}
 
@@ -45,6 +47,7 @@ public class CollectorTest {
 				.map(Person::getName)
 				.map(String::toUpperCase)
 				.collect(Collectors.joining(", "));
+		
 		System.out.println(new Object(){}.getClass().getEnclosingMethod().getName() +" " + result);
 	}
 
@@ -63,12 +66,14 @@ public class CollectorTest {
 				.map(Person::getName)
 				.map(String::toUpperCase)
 				.collect(Collectors.toUnmodifiableList());
+		
 		System.out.println(new Object(){}.getClass().getEnclosingMethod().getName() +" " + result);
 	}
 
 	private static void reduceConcat(List<Person> persons) {
 		Optional<String> result = persons.stream().map(Person::getName).map(String::toUpperCase)
 				.reduce((names, name) -> names + " " + name);
+		
 		System.out.println(new Object(){}.getClass().getEnclosingMethod().getName() +" " + result);
 	}
 
@@ -77,6 +82,7 @@ public class CollectorTest {
 //				.reduce(0, (total, age) -> total + age));
 //				.reduce(0, (total, age) -> Integer.sum(total, age)));
 				.reduce(0, Integer::sum);
+		
 		System.out.println(new Object(){}.getClass().getEnclosingMethod().getName() +" " + result);
 	}
 
